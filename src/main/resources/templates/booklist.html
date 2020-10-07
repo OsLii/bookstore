@@ -42,5 +42,10 @@
 	<div>
 		<a class="btn btn-success" href="/add">Add new book</a>
 	</div>
+
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+
 </body>
 </html>
