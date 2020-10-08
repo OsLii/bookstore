@@ -11,6 +11,8 @@ import com.example.bookstorefall2020.model.Book;
 import com.example.bookstorefall2020.model.BookRepository;
 import com.example.bookstorefall2020.model.Category;
 import com.example.bookstorefall2020.model.CategoryRepository;
+import com.example.bookstorefall2020.model.User;
+import com.example.bookstorefall2020.model.UserRepository;
 
 @SpringBootApplication
 public class BookstoreFall2020Application {
@@ -21,16 +23,17 @@ public class BookstoreFall2020Application {
 	}
 
 	@Bean
-	public CommandLineRunner bookdemo(BookRepository brepository, CategoryRepository crepository) {
+	public CommandLineRunner bookdemo(BookRepository brepository, CategoryRepository crepository,
+			UserRepository urepository) {
 		return (args) -> {
 			log.info("save a couple of books");
 			crepository.save(new Category("Kauhu"));
 			crepository.save(new Category("Fantasia"));
 			crepository.save(new Category("Toiminta"));
 
-			Book book1 = new Book("Harry Potter and the Prisoner of Azkaban", "J. K. Rowling", 2000, "	951-31-1737-5",
+			Book book1 = new Book("Harri Potteri", "J. K. Rowling", 2000, "1111111111",
 					10.0, crepository.findByName("Kauhu").get(0));
-			Book book2 = new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1998, "	951-31-1146-6",
+			Book book2 = new Book("Harry Potteri 2", "J. K. Rowling", 1998, "2222222222",
 					8.0, crepository.findByName("Fantasia").get(0));
 
 			brepository.save(book1);
@@ -41,7 +44,14 @@ public class BookstoreFall2020Application {
 				log.info(book.toString());
 
 			}
-		};
 
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6",
+					"user@haaga-helia.fi", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+					"admin@haaga-helia.fi", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
+
+		};
 	}
 }
