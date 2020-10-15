@@ -31,13 +31,16 @@ public class BookstoreFall2020Application {
 			crepository.save(new Category("Fantasia"));
 			crepository.save(new Category("Toiminta"));
 
-			Book book1 = new Book("Harri Potteri", "J. K. Rowling", 2000, "1111111111",
-					10.0, crepository.findByName("Kauhu").get(0));
-			Book book2 = new Book("Harry Potteri 2", "J. K. Rowling", 1998, "2222222222",
-					8.0, crepository.findByName("Fantasia").get(0));
+			Book book1 = new Book("Äksöni", "Andy action", 2000, "1111111111",
+					20.0, crepository.findByName("Toiminta").get(0));
+			Book book2 = new Book("Kammottava kirja", "Pelottava kirjailija", 1989, "2222222222",
+					33.0, crepository.findByName("Kauhu").get(0));
+			Book book3 = new Book("Taru sormusten herrasta", "J.R.R Tolkien", 1954, "12352346",
+					25.0, crepository.findByName("Fantasia").get(0));
 
 			brepository.save(book1);
 			brepository.save(book2);
+			brepository.save(book3);
 
 			log.info("fetch all books");
 			for (Book book : brepository.findAll()) {
